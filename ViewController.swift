@@ -23,6 +23,9 @@ class ViewController: UIViewController, SendDelegate
         messageViewController?.view.backgroundColor = UIColor.redColor()
         messageViewController?.view.frame = CGRectMake(100, 100, 200, 150)
         messageViewController?.delegate = self;
+        messageViewController?.sendClosureCallBack() {(list: [String]) in
+            println("Closure \(list)")
+        }
         self.view.addSubview(messageViewController!.view)
     }
     
@@ -32,7 +35,6 @@ class ViewController: UIViewController, SendDelegate
     }
     func addSubView(view: UIView) // 实例方法
     {
-        
     }
     
     func sendInfo(text: String) // 必须实现

@@ -20,6 +20,9 @@ protocol SendDelegate: NSObjectProtocol
     func sendInfo(text: String)
 }
 
+//声明Closure
+typealias SendClosure = (list: Array<String>) -> Void
+
 class MessageViewController: UIViewController {
     var delegate: SendDelegate!
 
@@ -30,11 +33,30 @@ class MessageViewController: UIViewController {
         sendButton.frame = CGRectMake(10, 10, 30, 30)
         sendButton.addTarget(self, action: Selector("backAction:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(sendButton)
+        
+        var closureButton: UIButton = UIButton.buttonWithType(UIButtonType.ContactAdd) as! UIButton
+        closureButton.frame = CGRectMake(50, 50, 30, 30)
+        closureButton.addTarget(self, action: Selector("closureAction:"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.addSubview(closureButton)
+        
     }
     
     func backAction(sender: UIButton)
     {
         self.delegate.sendInfo("Send delegate Action!")
+    }
+    
+    func closureAction(sender: UIButton)
+    {
+        self.sendClosureCallBack() {(list: Array<String>) in
+            println("In set Closure \(list)")
+        }
+    }
+    
+    func sendClosureCallBack(complete: SendClosure) -> Void
+    {
+        let array: Array<String> = ["12", "34", "56"]
+        complete(list: array)
     }
 
     override func didReceiveMemoryWarning() {
