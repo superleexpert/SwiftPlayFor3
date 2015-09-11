@@ -27,6 +27,8 @@ class ViewController: UIViewController, SendDelegate
             println("Closure \(list)")
         }
         self.view.addSubview(messageViewController!.view)
+        
+        self.controlFlow() // 遍历获取字典里最大的值
     }
     
     class func blackColor() -> UIColor // 类方法, 通过 class func 关键词声明
@@ -40,6 +42,31 @@ class ViewController: UIViewController, SendDelegate
     func sendInfo(text: String) // 必须实现
     {
         println("\(text)")
+    }
+    
+    func controlFlow()
+    {
+        let interestingNumbers = [
+            "Prime": [2, 3, 5, 7, 11, 13],
+            "Fibonacci": [1, 1, 2, 3, 5, 8],
+            "Square": [1, 4, 9, 16, 25],
+        ]
+        var largest = 0
+        for (key, numbers) in interestingNumbers {
+            for number in numbers {
+                if number > largest {
+                    largest = number
+                }
+            }
+        }
+        print("for result \(largest) \n")
+        
+        var firstForLoop = 0
+        for i in 0..<4 {
+            firstForLoop += i
+        }
+        print("order \(firstForLoop)")
+        
     }
     
     override func didReceiveMemoryWarning() {
