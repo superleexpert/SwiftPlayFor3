@@ -17,15 +17,18 @@ class ViewController: UIViewController, SendDelegate
         
         let oldArray = [1,2,3,4,5,6,7,8,9,10]
         let newArray = oldArray.filter({$0 > 4})
-        println("\(newArray)")
+        print("\(newArray)")
         
         messageViewController = MessageViewController()
         messageViewController?.view.backgroundColor = UIColor.redColor()
         messageViewController?.view.frame = CGRectMake(100, 100, 200, 150)
         messageViewController?.delegate = self;
         messageViewController?.sendClosureCallBack() {(list: [String]) in
-            println("Closure \(list)")
+            print("Closure \(list)")
         }
+//        messageViewController?.sendClosureCallBack({(list: [String]) -> Void in
+//            println("Closure \(list)")
+//        })
         self.view.addSubview(messageViewController!.view)
         
         self.controlFlow() // 遍历获取字典里最大的值
@@ -41,7 +44,7 @@ class ViewController: UIViewController, SendDelegate
     
     func sendInfo(text: String) // 必须实现
     {
-        println("\(text)")
+        print("\(text)")
     }
     
     func controlFlow()
@@ -59,13 +62,13 @@ class ViewController: UIViewController, SendDelegate
                 }
             }
         }
-        print("for result \(largest) \n")
+        print("for result \(largest) \n", terminator: "")
         
         var firstForLoop = 0
         for i in 0..<4 {
             firstForLoop += i
         }
-        print("order \(firstForLoop)")
+        print("order \(firstForLoop)", terminator: "")
         
     }
     

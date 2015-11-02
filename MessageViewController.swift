@@ -29,12 +29,12 @@ class MessageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var sendButton: UIButton = UIButton.buttonWithType(UIButtonType.ContactAdd) as! UIButton
+        let sendButton: UIButton = UIButton(type: UIButtonType.ContactAdd)
         sendButton.frame = CGRectMake(10, 10, 30, 30)
         sendButton.addTarget(self, action: Selector("backAction:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(sendButton)
         
-        var closureButton: UIButton = UIButton.buttonWithType(UIButtonType.ContactAdd) as! UIButton
+        let closureButton: UIButton = UIButton(type: UIButtonType.ContactAdd)
         closureButton.frame = CGRectMake(50, 50, 30, 30)
         closureButton.addTarget(self, action: Selector("closureAction:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(closureButton)
@@ -49,7 +49,7 @@ class MessageViewController: UIViewController {
     func closureAction(sender: UIButton)
     {
         self.sendClosureCallBack() {(list: Array<String>) in
-            println("In set Closure \(list)")
+            print("In set Closure \(list)")
         }
     }
     
